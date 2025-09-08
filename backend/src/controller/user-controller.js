@@ -25,7 +25,7 @@ export const getUsers = async (req, res) => {
     })
 
     if(!userCan(user, 'admin')) {
-      res.status(403).json({message: 'You don\'t have permission to use this feature.'})
+      res.status(403).json({msg: 'You don\'t have permission to use this feature.'})
       return
     }
 
@@ -34,6 +34,6 @@ export const getUsers = async (req, res) => {
     res.status(200).json(posts)
   } catch(error) {
     console.log(error)
-    res.status(500).json({message: 'Unknown error'})
+    res.status(500).json({msg: error.message})
   }
 }

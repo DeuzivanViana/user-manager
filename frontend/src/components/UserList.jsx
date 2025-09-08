@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { apiwc } from '../service/api'
+import { Edit, Eye, Trash, User } from 'lucide-react'
 
 export const UserList = () => {
   const [users, setUsers] = useState()
@@ -16,19 +17,29 @@ export const UserList = () => {
     fetchPosts()
   }, [])
 
-  return <ul>
+  return <div className='m-4 shadow-md shadow-neutral-400 rounded-xl p-6'>
+    <h1 className='text-2xl pb-4'>Clients</h1>
+    <ul className='flex flex-col gap-4'>
       {
         !isLoading && users ?
           users.map((user, index) => {
-            return <li key={index} className='bg-neutral-900 text-neutral-50 flex gap-4 items-center p-6'>
-              <div className='bg-neutral-300 w-[32px] h-[32px] rounded-full'></div>
-              <div>
-                <h1>{ user.display_name }</h1>
-                <footer className='text-neutral-300'>{ user.email }</footer>
+            return <li key={index} className='grid grid-cols-12 gap-4 items-center'>
+              <div className='flex col-span-5 items-center gap-4'>
+                <User size={36} className='text-neutral-700'/>
+                <div>
+                  <h1>{ user.display_name }</h1>
+                  <footer className='text-neutral-500'>{ user.email }</footer>
+                </div>
+              </div>
+              <div className='col-span-7 flex gap-2 justify-end'>
+                <Eye size={24} className='text-blue-500'/>
+                <Edit size={24} className='text-green-500'/>
+                <Trash size={24} className='text-red-500'/>
               </div>
             </li>
           })
-        : <></>
-      }
-  </ul>
+          : <></>
+        }
+      </ul>
+    </div>
 }

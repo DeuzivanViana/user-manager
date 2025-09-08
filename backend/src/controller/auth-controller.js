@@ -24,7 +24,7 @@ export const signUp = async (req, res) => {
 
     res.sendStatus(200)
   } catch(error) {
-    res.status(500).json({message: 'Unknown error'})
+    res.status(500).json({msg: error.message})
   }
 }
 
@@ -65,7 +65,7 @@ export const signIn = async (req, res) => {
 
     res.sendStatus(200)
   } catch(error) {
-    res.status(500).json({message: 'Unknown error'})
+    res.status(500).json({msg: error.message})
   }
 }
 
@@ -87,6 +87,6 @@ export const verifyToken = async (req, res) => {
     
     res.sendStatus(200)
   } catch(error) {
-    res.status(500).json({message: 'Unknown error'})
+    res.status(500).json({msg: error.message})
   }
 }
