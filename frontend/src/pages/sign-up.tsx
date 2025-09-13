@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { auth } from '../services/auth'
 import { validator } from '../models/validator'
+import { LoadingSpin } from '../components/LoadingSpin'
 
 export const SignUp = () => {
   const { isPending, data } = auth.useSession()
@@ -23,6 +24,8 @@ export const SignUp = () => {
     }
     signUp()
   } 
+
+  if(isPending) return <LoadingSpin/>
   
   return <div>
     <form className='bg-neutral-900 text-neutral-50 p-6 rounded-lg m-auto w-[350px] flex flex-col gap-4 mt-[25vh]' action={handleSignUp}>

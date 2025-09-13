@@ -15,6 +15,5 @@ export const Home = () => {
   if(isPending) return <LoadingSpin/>
 
   return <Layout>
-    <h1>Home</h1>
   </Layout>
 }

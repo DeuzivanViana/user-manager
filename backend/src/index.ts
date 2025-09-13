@@ -2,6 +2,7 @@ import { Elysia, t } from 'elysia'
 import cors from '@elysiajs/cors'
 import { betterAuthRouter } from './lib/auth'
 import { userRouter } from './routes/user'
+import { errorHandler } from './utils/error-handler'
 
 const app = new Elysia({
   serve: {
@@ -9,6 +10,7 @@ const app = new Elysia({
   },
   prefix: '/api/v1'
 })
+  .use(errorHandler)
   .use(cors({
     origin: "http://192.168.1.103:3000",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -17,7 +19,6 @@ const app = new Elysia({
   }))
   .mount(betterAuthRouter)
   .use(userRouter)
-  .get('/ok', ({ status }) => status(200))
   .listen(3333)
 
 console.log(
