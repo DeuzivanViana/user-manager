@@ -3,6 +3,7 @@ import { auth } from '../services/auth'
 import { LoadingSpin } from '../components/LoadingSpin'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { api_auth } from '../services/api'
 
 type User = {
   name: string,
@@ -18,14 +19,13 @@ export const Profile = () => {
 
   useEffect(() => {
     const fetchUserInfo = async () => {
-      const res = await fetch('http://192.168.1.103:3333/api/v1/user', {
-        method: 'GET',
-        credentials: 'include'
-      })
-      if(res.ok) {
-        const data = await res.json()
+      const res = await api_auth.get('http://192.168.1.103:3333/api/v1/user')
+
+      if(res.status == 200) {
+        const data = await res.data
         setUser(data)
       } 
+
       if(res?.status) setIsLoading(false)
     }
     fetchUserInfo()
