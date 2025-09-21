@@ -3,6 +3,7 @@ import cors from '@elysiajs/cors'
 import { userRouter } from './routes/user'
 import { errorHandler } from './utils/error-handler'
 import { betterAuthPlugin } from './http/plugins/better-auth'
+import { postRouter } from './routes/post'
 
 const app = new Elysia({
   serve: {
@@ -19,6 +20,7 @@ const app = new Elysia({
     allowedHeaders: ["Content-Type", "Authorization"],
   }))
   .use(userRouter)
+  .use(postRouter)
   .listen(3333)
 
 console.log(

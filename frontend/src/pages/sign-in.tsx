@@ -9,7 +9,7 @@ export const SignIn = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if(!isPending && data?.user) navigate('/')
+    if (!isPending && data?.user) navigate('/')
   }, [isPending, data])
 
   const handleSignIn = (formData: FormData) => {
@@ -22,14 +22,14 @@ export const SignIn = () => {
       auth.signIn.email(data)
     }
     signIn()
-  } 
-  
-  if(isPending) return <LoadingSpin/>
+  }
+
+  if (isPending) return <LoadingSpin />
 
   return <div>
     <form className='bg-neutral-900 text-neutral-50 p-6 rounded-lg m-auto w-[350px] flex flex-col gap-4 mt-[25vh]' action={handleSignIn}>
-      <input className='bg-neutral-800 p-4  outline-none rounded-lg' placeholder='Enter a email' type='email' name='email'/>
-      <input className='bg-neutral-800 p-4  outline-none rounded-lg' placeholder='Type a password' type='password' name='password'/>
+      <input className='bg-neutral-800 p-4  outline-none rounded-lg' placeholder='Enter a email' type='email' name='email' />
+      <input className='bg-neutral-800 p-4  outline-none rounded-lg' placeholder='Type a password' type='password' name='password' />
       <button className='bg-blue-500 p-4 rounded-lg' type='submit'>Sign-In</button>
     </form>
   </div>

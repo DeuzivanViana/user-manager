@@ -9,11 +9,15 @@ export const SignUp = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if(!isPending && data?.user) navigate('/')
+    if (!isPending && data?.user) navigate('/')
   }, [isPending, data])
 
   const handleSignUp = (formData: FormData) => {
     const signUp = async () => {
+      if(formData.get('password') !== formData.get('password2')) {
+        alert('Password don\'t match')
+        return
+      }
       const data = validator.sign_up.parse({
         email: formData.get('email'),
         password: formData.get('password'),
@@ -23,16 +27,16 @@ export const SignUp = () => {
       auth.signUp.email(data)
     }
     signUp()
-  } 
+  }
 
-  if(isPending) return <LoadingSpin/>
-  
+  if (isPending) return <LoadingSpin />
+
   return <div>
     <form className='bg-neutral-900 text-neutral-50 p-6 rounded-lg m-auto w-[350px] flex flex-col gap-4 mt-[25vh]' action={handleSignUp}>
-      <input className='bg-neutral-800 p-4  outline-none rounded-lg' placeholder='Enter your name' type='text' name='name'/>
-      <input className='bg-neutral-800 p-4  outline-none rounded-lg' placeholder='Enter a email' type='email' name='email'/>
-      <input className='bg-neutral-800 p-4  outline-none rounded-lg' placeholder='Type a password' type='password' name='password'/>
-      <input className='bg-neutral-800 p-4  outline-none rounded-lg' placeholder='Confirm your password' type='password' name='password2'/>
+      <input className='bg-neutral-800 p-4  outline-none rounded-lg' placeholder='Enter your name' type='text' name='name' />
+      <input className='bg-neutral-800 p-4  outline-none rounded-lg' placeholder='Enter a email' type='email' name='email' />
+      <input className='bg-neutral-800 p-4  outline-none rounded-lg' placeholder='Type a password' type='password' name='password' />
+      <input className='bg-neutral-800 p-4  outline-none rounded-lg' placeholder='Confirm your password' type='password' name='password2' />
       <button className='bg-blue-500 p-4 rounded-lg' type='submit'>Sign-Up</button>
     </form>
   </div>

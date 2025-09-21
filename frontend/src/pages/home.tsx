@@ -9,10 +9,10 @@ export const Home = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if(!isPending && !data?.user) navigate('/sign-in')
+    if (!isPending && !data?.user) navigate('/sign-in')
   }, [isPending, data])
 
-  if(isPending) return <LoadingSpin/>
+  if (isPending) return <LoadingSpin />
 
   return <Layout>
   </Layout>
